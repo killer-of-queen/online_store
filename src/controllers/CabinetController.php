@@ -18,7 +18,6 @@ class CabinetController
         $name = $_POST['name'];
 
         $answer = "";
-
         if (!User::checkName($name)) {
             $answer = "Имя не должно быть короче двух символов!";
         } else {

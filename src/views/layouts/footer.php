@@ -79,7 +79,11 @@
                     $("#change-name").click(function () {
                         var name = $("#name").val();
                         $.post("/cabinet/editLogin", {name: name}, function (data) {
+                            $("#name-error").fadeTo( 0 , 1, function() {
+                            });
                             $("#name-error").html(data);
+                            $("#name-error").fadeTo( 2400 , 0, function() {
+                            });
                         });
                         return false;
                     });
@@ -87,7 +91,11 @@
                     $("#change-email").click(function () {
                         var email = $("#email").val();
                         $.post("/cabinet/editEmail", {email: email}, function (data) {
+                            $("#email-error").fadeTo( 0 , 1, function() {
+                            });
                             $("#email-error").html(data);
+                            $("#email-error").fadeTo( 2400 , 0, function() {
+                            });
                         });
                         return false;
                     });
@@ -95,14 +103,14 @@
                     $("#change-password").click(function () {
                         var password = $("#password").val();
                         $.post("/cabinet/editPassword", {password: password}, function (data) {
+                            $("#password-error").fadeTo( 0 , 1, function() {
+                            });
                             $("#password-error").html(data);
+                            $("#password-error").fadeTo( 2400 , 0, function() {
+                            });
                         });
                         return false;
                     });
-
-                    $(".user-cabinet__error").hover(function () {
-                        $(this).html("");
-                    })
                 })
             </script>
     </body>
