@@ -99,6 +99,10 @@
                         });
                         return false;
                     });
+
+                    $(".user-cabinet__error").hover(function () {
+                        $(this).html("");
+                    })
                 })
             </script>
     </body>

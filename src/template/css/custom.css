@@ -409,7 +409,8 @@ a {
 }
 
 .user-cabinet__personal-information {
-   /* padding: 0 10rem;*/
+    width: 55%;
+    margin: auto;
 }
 
 .user-cabinet__personal-information__item {
@@ -417,6 +418,7 @@ a {
     justify-content: space-between;
     border-bottom: #d7d7d7 dashed 2px;
     padding: 1rem 0;
+    position: relative;
 }
 
 .user-cabinet__personal-information__item__info {
@@ -544,5 +546,9 @@ a, button {
 }
 
 .user-cabinet__error {
+    position: absolute;
+    left: 103%;
+    top: 39%;
+    width: max-content;
+    color: #888787;
 }
-
