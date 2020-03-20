@@ -1,0 +1,20 @@
+<?php
+return array(
+    'cart/checkout' => 'cart/checkout',
+    'cart/add/([0-9]+)' => 'cart/add/$1',
+    'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1',
+    'cart/delete/([0-9]+)' => 'cart/delete/$1',
+    'cart' => 'cart/index',
+    'contact' => 'site/contact',
+    'user/register' => 'user/register',
+    'user/login' => 'user/login',
+    'user/logout' => 'user/logout',
+    'news/([0-9]+)' => 'news/view/$1',
+    'news' => 'news/index',
+    'product/page-([0-9]+)' => 'product/list/$1/$2',
+    'product/([0-9]+)' => 'product/view/$1',
+    'product' => 'product/list',
+    'cabinet/delete' => 'cabinet/delete',
+    'cabinet' => 'cabinet/index',
+    '' => 'site/index',
+);
