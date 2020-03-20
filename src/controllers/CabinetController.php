@@ -15,66 +15,66 @@ class CabinetController
         $userId = User::checkLogged();
         $user = User::getUserById($userId);
 
-        $name = $user['login'];
+        $name = $_POST['name'];
 
-        $result = false;
-        if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
+        $answer = "";
 
-            $errors = false;
-            if (!User::checkName($name)) {
-                $errors['name'] = "Имя не должно быть короче двух символов!";
-            }
-
-            if ($errors == false) {
-                $result = User::editName($userId, $name);
+        if (!User::checkName($name)) {
+            $answer = "Имя не должно быть короче двух символов!";
+        } else {
+            $result = User::editName($userId, $name);
+            if ($result) {
+                $answer = "Успешно изменено";
+            } else {
+                $answer = "Что-то не так";
             }
         }
-        header("Location: /cabinet");
+        echo $answer;
+        return true;
     }
 
     public function actionEditEmail() {
         $userId = User::checkLogged();
         $user = User::getUserById($userId);
 
-        $email = $user['email'];
+        $email = $_POST['email'];
 
-        $result = false;
-        if (isset($_POST['submit'])) {
-            $email = $_POST['email'];
+        $answer = "";
 
-            $errors = false;
-            if (!User::checkEmail($email)) {
-                $errors['email'] = "Неправльный email!";
-            }
-
-            if ($errors == false) {
-                $result = User::editEmail($userId, $email);
+        if (!User::checkEmail($email)) {
+            $answer = "Неправльный email!";
+        } else {
+            $result = User::editEmail($userId, $email);
+            if ($result) {
+                $answer = "Успешно изменено";
+            } else {
+                $answer = "Что-то не так";
             }
         }
-        header("Location: /cabinet");
+        echo $answer;
+        return true;
     }
 
     public function actionEditPassword() {
         $userId = User::checkLogged();
         $user = User::getUserById($userId);
 
-        $password = $user['password'];
+        $password = $_POST['password'];
 
-        $result = false;
-        if (isset($_POST['submit'])) {
-            $password = $_POST['password'];
+        $answer = "";
 
-            $errors = false;
-            if (!User::checkPassword($password)) {
-                $errors['password'] = "Пароль не должен быть короче 6-ти символов!";
-            }
-
-            if ($errors == false) {
-                $result = User::editPassword($userId, $password);
+        if (!User::checkPassword($password)) {
+            $answer = "Пароль не должен быть короче 6-ти символов!";
+        } else {
+            $result = User::editPassword($userId, $password);
+            if ($result) {
+                $answer = "Успешно изменено";
+            } else {
+                $answer = "Что-то не так";
             }
         }
-        header("Location: /cabinet");
+        echo $answer;
+        return true;
     }
 
     public function actionDelete() {
@@ -87,11 +87,11 @@ class CabinetController
             $result = User::deleteAccount($userId);
         }
         if ($result) {
-
             header("Location: /user/logout");
         } else {
             $errors['delete'] = "Что-то пошло не так";
         }
+        require_once (ROOT . '/views/cabinet/index.php');
         return true;
     }
 

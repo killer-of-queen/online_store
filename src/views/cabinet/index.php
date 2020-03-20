@@ -10,35 +10,41 @@
         <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/editLogin">
             <div class="user-cabinet__personal-information__item__info">
                 <i class="fa fa-user-md fa-2x" style="color: #FFB800" aria-hidden="true"></i>
-                <input name="name" onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';" class="user-cabinet__personal-information__item__info__name" value="<?php echo $user['login']?>"/>
+                <input id="name" name="name" class="user-cabinet__personal-information__item__info__name" value="<?php echo $user['login']?>"/>
             </div>
-            <input value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
+            <div id="name-error" class="user-cabinet__error"></div>
+            <input id="change-name" value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
         </form>
         <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/editEmail">
             <div class="user-cabinet__personal-information__item__info">
                 <i class="fa fa-envelope-o fa-2x" style="color: #FFB800" aria-hidden="true"></i>
                 <div class="user-cabinet__personal-information__item__info__name">
                     <div>Электронная почта</div>
-                    <input type="email" name="email" value="<?php echo $user['email']?>" class="user-cabinet__personal-information__item__info__value"/>
+                    <input id="email" type="email" name="email" value="<?php echo $user['email']?>" class="user-cabinet__personal-information__item__info__value"/>
                 </div>
             </div>
-            <input value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
+            <div id="email-error" class="user-cabinet__error"></div>
+            <input id="change-email" value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
         </form>
         <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/editPassword">
             <div class="user-cabinet__personal-information__item__info">
                 <i class="fa fa-key fa-2x" style="color: #FFB800" aria-hidden="true"></i>
                 <div class="user-cabinet__personal-information__item__info__name">
                     <div>Пароль</div>
-                    <input type="password" name="password" placeholder="Ваш новый пароль" class="user-cabinet__personal-information__item__info__value"/>
+                    <input id="password" type="password" name="password" placeholder="Ваш новый пароль" class="user-cabinet__personal-information__item__info__value"/>
                 </div>
             </div>
-            <input value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
+            <div id="password-error" class="user-cabinet__error"></div>
+            <input id="change-password" value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
         </form>
         <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/delete">
             <div class="user-cabinet__personal-information__item__info">
                 <i class="fa fa-trash-o fa-2x" style="color: #FFB800" aria-hidden="true"></i>
                 <div class="user-cabinet__personal-information__item__info__name">Удалить аккаунт</div>
             </div>
+            <?php if (isset($errors['delete'])): ?>
+                <div class="user-cabinet__error"><?php echo $errors['delete']?></div>
+            <?php endif;?>
             <input type="submit" name="submit" value="Удалить" class="personal-information__submit" type="submit"/>
         </form>
     </div>

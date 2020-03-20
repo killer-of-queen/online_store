@@ -74,7 +74,31 @@
                             $("#cart-count").html(data);
                         });
                         return false;
-                    })
+                    });
+
+                    $("#change-name").click(function () {
+                        var name = $("#name").val();
+                        $.post("/cabinet/editLogin", {name: name}, function (data) {
+                            $("#name-error").html(data);
+                        });
+                        return false;
+                    });
+
+                    $("#change-email").click(function () {
+                        var email = $("#email").val();
+                        $.post("/cabinet/editEmail", {email: email}, function (data) {
+                            $("#email-error").html(data);
+                        });
+                        return false;
+                    });
+
+                    $("#change-password").click(function () {
+                        var password = $("#password").val();
+                        $.post("/cabinet/editPassword", {password: password}, function (data) {
+                            $("#password-error").html(data);
+                        });
+                        return false;
+                    });
                 })
             </script>
     </body>
