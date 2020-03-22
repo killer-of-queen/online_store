@@ -6,9 +6,12 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// подключаем автозагрузчик Composer
+include_once __DIR__ . '/../vendor/autoload.php';
+
 //подключение файлов системы
-define('ROOT', dirname(__FILE__));
-include_once (ROOT.'/components/Autoload.php');
+define('ROOT', __DIR__ . '/../src');
+include_once __DIR__ . '/../src/components/Autoload.php';
 
 //установка соединения с бд
 

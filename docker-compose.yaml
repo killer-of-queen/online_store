@@ -1,11 +1,31 @@
 version: '3'
 services:
+  # in case Apache's modrewrite does not work,
+  # run the following commands to reactivate it:
+  #
+  # sudo docker exec -it onlinestore_php_1 /bin/bash
+  # a2enmod rewrite
+  # service apache2 reload && /bin/bash
+  #
   php:
     image: php:7.4-apache
     ports:
       - 80:80
     volumes:
-      - ./src:/var/www/html
+      - ./:/var/www
+
+  # to install dependencies:
+  # sudo docker exec -it onlinestore_composer_1 /bin/bash
+  # composer require <vendor>/<package>
+  #
+  # or to install from composer.lock:
+  # composer install
+  composer:
+    image: composer
+    tty: true
+    command: /bin/sh
+    volumes:
+      - ./:/app
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:
