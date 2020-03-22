@@ -1,6 +1,5 @@
 <?php
 
-
 class UserController
 {
     public function actionRegister() {

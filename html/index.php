@@ -6,6 +6,8 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+const KEY = 'werVFSHbdjJDBjfdhfJHGDF12KJvfdyvBv';
+
 // подключаем автозагрузчик Composer
 include_once __DIR__ . '/../vendor/autoload.php';
 

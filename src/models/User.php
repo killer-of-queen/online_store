@@ -1,5 +1,5 @@
 <?php
-
+use \Firebase\JWT\JWT;
 
 class User
 {
@@ -76,10 +76,20 @@ class User
     }
 
     public static function auth($userId) {
+        $payload = [
+            'userId' => $userId,
+            'exp' => time() + 3600,
+        ];
+        $jwt = JWT::encode($payload, KEY);
+        setcookie('jwtAuth', $jwt, time() + 3600, "/");
         $_SESSION['user'] = $userId;
     }
 
     public static function checkLogged() {
+        if (isset($_COOKIE['jwtAuth'])) {
+            $jwt = $_COOKIE['jwtAuth'];
+            $decoded = JWT::decode($jwt, KEY, array('HS256'));
+        }
         if(isset($_SESSION['user'])) {
             return $_SESSION['user'];
         }
