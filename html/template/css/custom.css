@@ -564,3 +564,14 @@ a, button {
     color: #757575;
     font-size: 1.5rem;
 }
+
+.payment__control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.payment-error {
+    color: #757575;
+    padding-left: 1rem;
+}

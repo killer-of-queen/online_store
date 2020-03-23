@@ -21,9 +21,9 @@
                         <td><?php echo $item['price']?></td>
                         <td><?php echo $item['amount']?></td>
                         <td><?php echo sprintf("%.2f", $item['price'] * $item['amount'])?></td>
-                        <td>
+                        <td class="order-delete-item">
                             <?php if($orderInfo['status'] != 1):?>
-                            <a href="/order/delete/<?php echo $order_id?>/<?php echo $item['id']?>">
+                            <a class="order-delete-link" href="/order/delete/<?php echo $order_id?>/<?php echo $item['id']?>">
                                 <i class="fa fa-trash-o fa-2x" style="color: #FFB800" aria-hidden="true"></i>
                             </a>
                             <?php else: ?>
@@ -42,11 +42,16 @@
                     <td><?php echo sprintf("%.2f", $totalPrice)?></td>
                 </tr>
             </table>
-            <?php if($orderInfo['status'] != 1):?>
-                <a href="/order/payment/<?php echo $order_id?>" class="product-list__btn-buy">Оплатить</a>
-            <?php else: ?>
-            <div class="order__is__paid"><?php echo "Оплачено"?></div>
-            <?php endif;?>
+            <div class="order__query">
+                <?php if($orderInfo['status'] != 1):?>
+                <div class="payment__control">
+                    <a id="payment-button" data-id="<?php echo $order_id?>" class="product-list__btn-buy">Оплатить</a>
+                    <div class="payment-error" id="payment-error"></div>
+                </div>
+                <?php else: ?>
+                    <div class="order__is__paid"><?php echo "Оплачено"?></div>
+                <?php endif;?>
+            </div>
         </div>
     <?php else: ?>
         Список заказа пуст

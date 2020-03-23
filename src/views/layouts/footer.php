@@ -111,6 +111,21 @@
                         });
                         return false;
                     });
+
+                    $("#payment-button").click(function () {
+                        var id = $(this).attr("data-id");
+                        $.post("/order/payment/" + id, {}, function (data) {
+                            if (data == 'ok') {
+                                $("#payment-button").remove();
+                                $(".order-delete-item .order-delete-link").remove();
+                                $(".order-delete-item").append('<i class="fa fa-trash-o fa-2x" style="color: #7a7a7a" aria-hidden="true"></i>');
+                                $(".order__query").append('<div class="order__is__paid">Оплачено</div>');
+                            } else {
+                                $("#payment-error").html(data);
+                            }
+                        });
+                        return false;
+                    });
                 })
             </script>
     </body>

@@ -21,28 +21,26 @@ class OrderController
     }
 
     public function actionPayment($order_id) {
-        if (User::isGuest()) {
-            header("Location:/login");
-        }
-        else
-            $userId = User::checkLogged();
+
+        $userId = User::checkLogged();
 
         $price = 0;
         $order = Order::getOrderContentById($order_id);
         foreach ($order as $item)
             $price += $item['price'];
 
-        $error = false;
+        $error = "";
         if (!User::checkBalance($userId, $price)) {
-            $error['balance'] = 'Недостаточно средств на вашем счете. Пополните баланс';
+            $error = 'Недостаточно средств на вашем счете. Пополните баланс';
         } else {
             $result = Order::Pay($userId, $price, $order_id);
             if ($result) {
-                header("Location:/order/content/$order_id");
+                $error = "ok";
             } else {
-
+                $error = 'Что то пошло не так...';
             }
         }
+        echo $error;
         return true;
     }
 }
