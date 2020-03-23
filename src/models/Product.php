@@ -19,7 +19,7 @@ class Product
     {
         $db = Db::getConnection();
 
-        $result = $db->query('SELECT id, name, price, image, short_name, short_description, description FROM product WHERE id='.$id);
+        $result = $db->query('SELECT id, name, price, image, short_name, short_description, description, amount FROM product WHERE id='.$id);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $productItem = $result->fetch();
         return $productItem;
@@ -63,6 +63,7 @@ class Product
             $products[$i]['name'] = $row['name'];
             $products[$i]['price'] = $row['price'];
             $products[$i]['image'] = $row['image'];
+            $products[$i]['amount'] = $row['amount'];
             $i++;
         }
 

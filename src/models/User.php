@@ -26,6 +26,15 @@ class User
         return false;
     }
 
+    public static function checkBalance($userId, $totalPrice) {
+        $user = User::getUserById($userId);
+        $balance = $user['balance'];
+        if ($balance < $totalPrice) {
+            return false;
+        }
+        return true;
+    }
+
     public static function checkPassword($password) {
         if (strlen($password) >= 6) {
             return true;

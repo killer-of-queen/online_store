@@ -62,15 +62,13 @@
                 <th>ID</th>
                 <th>Дата</th>
                 <th>Количество товаров</th>
-                <th>Цена</th>
                 <th>Статус</th>
             </tr>
                 <?php foreach ($orders as $order): ?>
                     <tr class="user-cabinet__orders__list-row">
-                        <td><?php echo $order['id']?></td>
+                        <td><a href="/order/content/<?php echo $order['id']?>"><?php echo $order['id']?></a></td>
                         <td><?php echo $order['date']?></td>
                         <td><?php echo $order['quantity']?></td>
-                        <td><?php echo $order['price']?></td>
                         <td><?php echo $order['status']?></td>
                     </tr>
                 <?php endforeach;?>

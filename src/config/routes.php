@@ -1,5 +1,8 @@
 <?php
 return array(
+    'order/delete/([0-9]+)/([0-9]+)' => 'order/delete/$1/$2',
+    'order/payment/([0-9]+)' => 'order/payment/$1',
+    'order/content/([0-9]+)' => 'order/content/$1',
     'cart/checkout' => 'cart/checkout',
     'cart/add/([0-9]+)' => 'cart/add/$1',
     'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1',

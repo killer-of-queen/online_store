@@ -552,3 +552,15 @@ a, button {
     width: max-content;
     color: #888787;
 }
+
+.order__is__paid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #f6f6f6;
+    text-align: center;
+    height: 3rem;
+    color: #757575;
+    font-size: 1.5rem;
+}
