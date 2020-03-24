@@ -60,6 +60,16 @@ class Order
         }
         $result->execute();
 
+        //Third query (amount of products)
+        for ($inx = 0; $inx < count($approvedProductList); $inx++) {
+            $sql = "UPDATE product
+                SET amount=(amount-?)  WHERE id = ?";
+            $result = $db->prepare($sql);
+            $result->bindValue(1, $approvedProductList[$inx]["amount"], PDO::PARAM_INT);
+            $result->bindValue(2, $approvedProductList[$inx]["product_id"], PDO::PARAM_INT);
+            $result->execute();
+        }
+
         //Success transaction
         $db->commit();
         return true;
