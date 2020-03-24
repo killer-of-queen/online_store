@@ -17,7 +17,14 @@ class OrderController
 
     public function actionDelete($order_id, $order_element) {
         Order::deleteOrderElement($order_element);
-        header("Location:/order/content/$order_id");
+        $totalAmount = Order::getAmountProductInOrder($order_id);
+        if ($totalAmount["count"] > 0) {
+            header("Location:/order/content/$order_id");
+        } else {
+            //Нужна ошибка
+            $result = Order::deleteEmptyOrder($order_id);
+            header("Location:/cabinet");
+        }
     }
 
     public function actionPayment($order_id) {

@@ -120,11 +120,30 @@ class Order
         return $products;
     }
 
+    public static function getAmountProductInOrder($order_id) {
+        $db = Db::getConnection();
+        $sql = "SELECT COUNT(*) AS count FROM order_content WHERE order_content.order_id=:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $order_id);
+
+        $result->execute();
+        $result -> setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetch();
+    }
+
     public static function deleteOrderElement($order_element) {
         $db = Db::getConnection();
         $sql = "DELETE FROM order_content WHERE id=:id";
         $result = $db->prepare($sql);
         $result->bindParam(':id', $order_element);
+        return $result->execute();
+    }
+
+    public static function deleteEmptyOrder($order_id) {
+        $db = Db::getConnection();
+        $sql = "DELETE FROM product_order WHERE id=:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $order_id);
         return $result->execute();
     }
 
