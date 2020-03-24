@@ -17,6 +17,7 @@ return array(
     'product/page-([0-9]+)' => 'product/list/$1/$2',
     'product/([0-9]+)' => 'product/view/$1',
     'product' => 'product/list',
+    'cabinet/editBalance' => 'cabinet/editBalance',
     'cabinet/editEmail' => 'cabinet/editEmail',
     'cabinet/editPassword' => 'cabinet/editPassword',
     'cabinet/editLogin' => 'cabinet/editLogin',

@@ -163,6 +163,17 @@ class User
         return $result->execute();
     }
 
+    public static function editBalance($id, $balance) {
+        $db = Db::getConnection();
+
+        $sql = "UPDATE user
+                SET balance = :balance  WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':balance', $balance);
+        return $result->execute();
+    }
+
     public static function deleteAccount($id) {
         $db = Db::getConnection();
 
@@ -171,5 +182,9 @@ class User
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         return $result->execute();
+    }
+
+    public static function checkBalanceValue($balance) {
+        return is_numeric($balance) && $balance >= 0;
     }
 }

@@ -37,6 +37,17 @@
             <div id="password-error" class="user-cabinet__error"></div>
             <input id="change-password" value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
         </form>
+        <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/editBalance">
+            <div class="user-cabinet__personal-information__item__info">
+                <i class="fa fa-money fa-2x" style="color: #FFB800" aria-hidden="true"></i>
+                <div class="user-cabinet__personal-information__item__info__name">
+                    <div>Баланс</div>
+                    <input value="<?php echo $user['balance']?>" id="balance" type="balance" name="balance" class="user-cabinet__personal-information__item__info__value"/>
+                </div>
+            </div>
+            <div id="balance-error" class="user-cabinet__error"></div>
+            <input id="change-balance" value="Изменить" class="personal-information__submit" type="submit" name="submit"/>
+        </form>
         <form class="user-cabinet__personal-information__item" method="post" action="/cabinet/delete">
             <div class="user-cabinet__personal-information__item__info">
                 <i class="fa fa-trash-o fa-2x" style="color: #FFB800" aria-hidden="true"></i>

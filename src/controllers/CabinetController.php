@@ -76,6 +76,28 @@ class CabinetController
         return true;
     }
 
+    public function actionEditBalance() {
+        $userId = User::checkLogged();
+        $user = User::getUserById($userId);
+
+        $balance = $_POST['balance'];
+
+        $answer = "";
+
+        if (!User::checkBalanceValue($balance)) {
+            $answer = "Баланс должен быть положительным числом";
+        } else {
+            $result = User::editBalance($userId, $balance);
+            if ($result) {
+                $answer = "Успешно изменено";
+            } else {
+                $answer = "Что-то не так";
+            }
+        }
+        echo $answer;
+        return true;
+    }
+
     public function actionDelete() {
         $userId = User::checkLogged();
         $user = User::getUserById($userId);

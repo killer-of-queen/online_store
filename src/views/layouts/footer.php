@@ -100,6 +100,18 @@
                         return false;
                     });
 
+                    $("#change-balance").click(function () {
+                        var balance = $("#balance").val();
+                        $.post("/cabinet/editBalance", {balance: balance}, function (data) {
+                            $("#balance-error").fadeTo( 0 , 1, function() {
+                            });
+                            $("#balance-error").html(data);
+                            $("#balance-error").fadeTo( 2400 , 0, function() {
+                            });
+                        });
+                        return false;
+                    });
+
                     $("#change-password").click(function () {
                         var password = $("#password").val();
                         $.post("/cabinet/editPassword", {password: password}, function (data) {
