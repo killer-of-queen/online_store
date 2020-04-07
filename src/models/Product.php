@@ -105,4 +105,24 @@ class Product
         $result->bindParam(':id', $id);
         return $result->execute();
     }
+
+    public static function createProduct($options) {
+        $db = Db::getConnection();
+
+        $sql = 'INSERT INTO product '
+                . '(name, price, short_name, short_description, description, amount) '
+                . 'VALUES '
+                . '(:name, :price, :short_name, :short_description, :description, :amount)';
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+        $result->bindParam(':short_name', $options['short_name'], PDO::PARAM_STR);
+        $result->bindParam(':short_description', $options['short_description'], PDO::PARAM_STR);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+        $result->bindParam(':amount', $options['amount'], PDO::PARAM_INT);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        if ($result->execute()) {
+            return $db->lastInsertId();
+        }
+        return 0;
+    }
 }

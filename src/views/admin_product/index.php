@@ -2,7 +2,7 @@
 <main class="main wrapper user-cabinet__wrapper">
     <div class="admin__product__add">
         <div class="user-cabinet__header">Добавить новый</div>
-        <a class="admin__product__add__button user-cabinet__logout" href="/admin/create">
+        <a class="admin__product__add__button user-cabinet__logout" href="/admin/product/create">
             <i class="fa fa-plus fa-2x" style="color: #FFB800" aria-hidden="true"></i>
         </a>
     </div>
