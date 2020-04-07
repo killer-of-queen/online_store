@@ -117,7 +117,9 @@ class User
 
         if ($id) {
             $db = Db::getConnection();
-            $sql = 'SELECT * FROM user WHERE id = :id';
+            $sql = 'SELECT user.id AS id, login, password, email, is_deleted, balance, role.name AS role 
+                        FROM user INNER JOIN role on user.role=role.id 
+                        WHERE user.id = :id';
 
             $result = $db->prepare($sql);
             $result->bindParam(':id', $id, PDO::PARAM_INT);

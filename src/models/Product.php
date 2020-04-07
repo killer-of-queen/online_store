@@ -45,6 +45,23 @@ class Product
         return $productList;
     }
 
+    public static function getAllProductList() {
+        $db = Db::getConnection();
+        $productList = array();
+        $result = $db->query('SELECT id, name, price, image, amount FROM product WHERE is_deleted=0');
+        $i = 0;
+        while($row = $result->fetch()) {
+            $productList[$i]['id'] = $row['id'];
+            $productList[$i]['name'] = $row['name'];
+            $productList[$i]['price'] = $row['price'];
+            $productList[$i]['image'] = $row['image'];
+            $productList[$i]['amount'] = $row['amount'];
+            $i++;
+        }
+
+        return $productList;
+    }
+
     public static function getProductsByIds($idsArray) {
         $products = array();
 
@@ -79,5 +96,13 @@ class Product
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $row = $result->fetch();
         return $row['amount'];
+    }
+
+    public static function deleteProductById($id) {
+        $db = Db::getConnection();
+        $sql = "UPDATE product SET is_deleted=1 WHERE id=:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id);
+        return $result->execute();
     }
 }

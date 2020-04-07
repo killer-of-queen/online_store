@@ -575,3 +575,13 @@ a, button {
     color: #757575;
     padding-left: 1rem;
 }
+
+.admin__product__add {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin__product__add__button {
+    padding-left: 1rem;
+}
