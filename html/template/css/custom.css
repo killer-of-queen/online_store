@@ -419,6 +419,7 @@ a {
     border-bottom: #d7d7d7 dashed 2px;
     padding: 1rem 0;
     position: relative;
+    align-items: center;
 }
 
 .user-cabinet__personal-information__item__info {
@@ -598,5 +599,13 @@ a, button {
 }
 
 .admin_success_header {
+    text-align: center;
+}
+
+.admin__user__info {
+    border: none;
+    margin-left: 1rem;
+    color: #5b5b5b;
+    font-size: 1.2rem;
     text-align: center;
 }
