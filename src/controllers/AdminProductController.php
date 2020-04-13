@@ -5,7 +5,6 @@ class AdminProductController extends AdminBase
 {
     public function actionIndex() {
         self::checkAdmin();
-
         $productList = Product::getAllProductList();
 
         require_once (ROOT . '/views/admin_product/index.php');
@@ -18,11 +17,11 @@ class AdminProductController extends AdminBase
 
         if (isset($_POST['submit'])) {
             $options['name'] = $_POST['name'];
-            $options['price'] = ($_POST['price'] == '') ? '0' : $_POST['price'];
+            $options['price'] = (float) $_POST['price'];
             $options['short_name'] = $_POST['short_name'];
             $options['short_description'] = $_POST['short_description'];
             $options['description'] = $_POST['description'];
-            $options['amount'] = $_POST['amount'];
+            $options['amount'] = (int) $_POST['amount'];
 
             $errors = false;
             $success = false;
@@ -34,11 +33,12 @@ class AdminProductController extends AdminBase
                 $id = Product::createProduct($options);
                 if($id) {
                     $success = "Новый товар №" . $id . " был успешно добавлен";
+                    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                        dump($_FILES['image']);
+                        move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/template/images/' . $_FILES['image']['name']);
+                        Product::addProductImage($id, $_FILES['image']['name']);
+                    }
                     require_once (ROOT . '/views/admin/success.php');
-                    return true;
-                    //if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-                    //move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] .  '/template/images/');
-                    // }
                     return true;
                 }
             }
@@ -57,15 +57,29 @@ class AdminProductController extends AdminBase
     }
 
     public function actionUpdate($id) {
-
+        self::checkAdmin();
         $product = Product::getProductItemById($id);
         if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
-            $price = $_POST['price'];
-            $short_name = $_POST['short_name'];
-            $short_description = $_POST['short_description'];
-            $description = $_POST['description'];
-            $amount = $_POST['amount'];
+            $options['name'] = $_POST['name'];
+            $options['price'] = $_POST['price'];
+            $options['short_name'] = $_POST['short_name'];
+            $options['short_description'] = $_POST['short_description'];
+            $options['description'] = (float) $_POST['description'];
+            $options['amount'] =  (int) $_POST['amount'];
+
+            if (Product::updateProductById($id, $options)) {
+                $success = "Товар №" . $id . " был успешно обновлен";
+                if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                    move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/template/images/' . $_FILES['image']['name']);
+                    Product::addProductImage($id, $_FILES['image']['name']);
+                }
+                require_once (ROOT . '/views/admin/success.php');
+                return true;
+            } else {
+                $error = "Произошла ошибка при добавлении товара. Попробуйте еще раз.";
+                require_once (ROOT . '/views/admin/error.php');
+                return true;
+            }
         }
 
         require_once (ROOT . '/views/admin_product/update.php');

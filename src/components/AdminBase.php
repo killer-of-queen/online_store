@@ -4,7 +4,7 @@
 abstract class AdminBase
 {
     public static function  checkAdmin() {
-        $userId = User::checkLogged();
+        $userId = User::checkAdminLogged();
 
         $user = User::getUserById($userId);
 

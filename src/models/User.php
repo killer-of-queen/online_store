@@ -94,6 +94,17 @@ class User
         $_SESSION['user'] = $userId;
     }
 
+    public static function checkAdminLogged() {
+        if (isset($_COOKIE['jwtAuth'])) {
+            $jwt = $_COOKIE['jwtAuth'];
+            $decoded = JWT::decode($jwt, KEY, array('HS256'));
+        }
+        if(isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+        }
+        header("Location: /admin/login");
+    }
+
     public static function checkLogged() {
         if (isset($_COOKIE['jwtAuth'])) {
             $jwt = $_COOKIE['jwtAuth'];

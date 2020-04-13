@@ -125,4 +125,40 @@ class Product
         }
         return 0;
     }
+
+    public static function updateProductById($id, $options) {
+        $db = Db::getConnection();
+
+        $sql = "UPDATE product
+            SET
+                name=:name,
+                price=:price,
+                short_name=:short_name,
+                short_description=:short_description,
+                description=:description,
+                amount=:amount
+            WHERE id=:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+        $result->bindParam(':short_name', $options['short_name'], PDO::PARAM_STR);
+        $result->bindParam(':short_description', $options['short_description'], PDO::PARAM_STR);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+        $result->bindParam(':amount', $options['amount'], PDO::PARAM_INT);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $result->execute();
+    }
+
+    public static function addProductImage($id, $image) {
+        $db = Db::getConnection();
+        $sql = "UPDATE product
+            SET
+                image=:image
+            WHERE id=:id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':image', $image, PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
 }

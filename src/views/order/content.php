@@ -43,13 +43,17 @@
                 </tr>
             </table>
             <div class="order__query">
-                <?php if($orderInfo['status'] != 1):?>
-                <div class="payment__control">
-                    <a id="payment-button" data-id="<?php echo $order_id?>" class="product-list__btn-buy">Оплатить</a>
-                    <div class="payment-error" id="payment-error"></div>
-                </div>
+                <?php if($orderInfo['status'] != 1 && $orderInfo['status'] != 2):?>
+                    <div class="payment__control">
+                        <a id="payment-button" data-id="<?php echo $order_id?>" class="product-list__btn-buy">Оплатить</a>
+                        <div class="payment-error" id="payment-error"></div>
+                    </div>
                 <?php else: ?>
-                    <div class="order__is__paid"><?php echo "Оплачено"?></div>
+                    <?php if($orderInfo['status'] == 1): ?>
+                        <div class="order__is__paid"><?php echo "Оплачено"?></div>
+                    <?php else: ?>
+                        <div class="order__is__paid"><?php echo "Отменено"?></div>
+                    <?php endif;?>
                 <?php endif;?>
             </div>
         </div>

@@ -10,13 +10,12 @@ class CartController
     }
 
     public function actionAddAjax($id) {
-
         echo Cart::addProduct($id);
         return true;
     }
 
     public function actionIndex() {
-
+        $userId = User::checkLogged();
         $productsInCart = false;
 
         $productsInCart = Cart::getProducts();
@@ -102,6 +101,7 @@ class CartController
     }
 
     public function actionDelete($id) {
+        $userId = User::checkLogged();
         Cart::deleteProduct($id);
         header("Location:/cart/");
     }

@@ -19,7 +19,7 @@
                 </a>
                 <a class="header__item" href="/admin/product">Товары</a>
                 <a class="header__item"  href="/admin/category">Категории</a>
-                <a class="header__item" href="/admin/orders">Заказы</a>
+                <a class="header__item" href="/admin/order">Заказы</a>
                 <a class="header__item" href="/admin/statistic">Статистика</a>
                 <span>
                     <a class="header__item" href="/admin/cabinet"><i class="fa fa-user fa-2x" aria-hidden="true" style="color: #FFB800"></i></a>

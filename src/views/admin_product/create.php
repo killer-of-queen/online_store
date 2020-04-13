@@ -1,7 +1,7 @@
 <?php include ROOT.'/views/layouts/admin_header.php' ?>
 <main class="main wrapper user-cabinet__wrapper">
     <p class="registration__header admin__product__update__header">Добавить новый товар</p>
-    <form enctype="multipart/form-data" class="admin__product__update__form" method="post" action="/admin/product/create">
+    <form class="admin__product__update__form" method="post" enctype="multipart/form-data"  action="/admin/product/create">
         <div>
             <label class="registration__label" for="name">Наименование</label>
             <input id="name" class="registration__field contact_field" name="name">

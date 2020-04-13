@@ -4,6 +4,7 @@
 class OrderController
 {
     public function actionContent($order_id) {
+        $userId = User::checkLogged();
         $totalPrice = 0;
         $order = [];
         $order = Order::getOrderContentById($order_id);
@@ -16,6 +17,7 @@ class OrderController
     }
 
     public function actionDelete($order_id, $order_element) {
+        $userId = User::checkLogged();
         Order::deleteOrderElement($order_element);
         $totalAmount = Order::getAmountProductInOrder($order_id);
         if ($totalAmount["count"] > 0) {
