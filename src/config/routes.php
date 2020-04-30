@@ -1,5 +1,9 @@
 <?php
 return array(
+    'api/product/([0-9]+)' => 'api/product/$1',
+    'api/products' => 'api/products',
+    'api/register' => 'api/register',
+    'api/login' => 'api/login',
     'admin/product/create' => 'adminProduct/create',
     'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',
     'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
